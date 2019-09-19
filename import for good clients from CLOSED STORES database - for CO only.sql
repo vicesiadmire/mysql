@@ -328,7 +328,7 @@ SELECT
 
 			####### REPLACE functions for cell phones that already exist
 			WHEN a.cell_phone IS NOT NULL
-				AND a.cell_phone != ""  ####!!!!!!!!!!!!!!!!!! good god, the LACK of this line really fucked things up. when it WASN'T here
+				AND a.cell_phone != ""  ####!!!!!!!!!!!!!!!!!! good god, the LACK of this line really mucked things up. when it WASN'T here
 										#### -----------------> then MySQL looked for even the blank entries and basically did nothing to them
 										#### -----------------------> which just meant I had a shit ton of blank entries. 
 											THEN REPLACE(
