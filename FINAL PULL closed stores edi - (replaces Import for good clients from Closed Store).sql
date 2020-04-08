@@ -3,8 +3,8 @@
 
 # ****************************************** cooool sh*t below *************************************************
 ###### ctrl f "FINDWP" "FINDCP" "FINDHP" "FINDINSERT" "FINDTRUEBOOL" "DEADCPCODE" "FINDDBLINSERT" "FINDABA" "FINDBANK" "FINDPD" (payday) "FINDEMP" (employer)
-###### SELECT @var1 = c.ss_number; # creating a variable to really muck with things big time money goo goo baby bear habbahabba choochoo 
-#SET @row_number = 0; ### numbering 'dem rows. Make a variable and add one each time. Clever girl.
+###### SELECT @var1 = c.ss_number; # creating a variable to really muck with things big time money
+#SET @row_number = 0; ### numbering 'dem rows. Make a variable and add one each time. Clever.
 
 SELECT
 	#(@row_number:=@row_number + 1) AS row_num, 
@@ -436,8 +436,8 @@ END) AS "SSN        ",
 																																			trim(leading '1-' from c.home_phone)
 																																			)
 
-		### REPLACEMENTS REPLACEMENTS REPLACEMENTS REPLACEMENTS --- NOTE: cannot have separate WHEN-statements for each REPLACE function - IT DOES NOT WORK
-		### --------=================>>>>>>> IMPORTANT!: the statements get executed from the center out. so place the specific changes in the middle and then work out. avoid single letters
+		### REPLACEMENTS REPLACEMENTS REPLACEMENTS REPLACEMENTS --- NOTE: cannot have separate WHEN-clauses for each REPLACE function - IT DOES NOT WORK
+		### --------=================>>>>>>> IMPORTANT!: the functions get executed from the center out. so place the specific changes in the middle and then work out. avoid single letters
 		### --------=================>>>>>>>>>>>>>>>>>>>> whenever possible. but if you must, then wait until the end. 
 		###!!!!!!!!!!!!!!!! ------> oh sh*t, okay, I get it. I put "when c.home_phone IS NOT NULL" which meant that this replace sought to replace any c.home_phone that wasn't null
 		###!!!!!!!!!!!!!!!! -----------------> when in actuality what it needed was to be more specific. ONLY replace the ones that have letters or specific punctuation in it
@@ -842,8 +842,8 @@ END) AS "SSN        ",
 					##THIS WHEN STATEMENT EJECTED ON 12/10/2019 by Dave 
 
 					#### IF the SSN is in client and aux_client, but the cell phone is a bust for some reason and the home phone is perfect, but only 8 digits long
-					###### ACTUALLY, f**k this WHEN statement too. Who f**king cares? If we took the time to say the cell phone was a bust, then f**k it! Why
-					###### bother copying the home phone there? Just to piss me off and make me waste my time? Yes!
+					###### ACTUALLY, f**k this WHEN clause too. Who f**king cares? If we took the time to say the cell phone was a bust, then f**k it! Why
+					###### bother copying the home phone there? Just to make me waste my time? My sources say Yes!
 
 					## THIS WHEN STATEMENT EJECTED ON 12/10/2019 by Dave ##
 
@@ -1028,7 +1028,7 @@ END) AS "SSN        ",
 										)
 									)
 
-			############## APPEND THAT MUHFUGGIN PREFIX, YA SHITHEAD!
+			############## APPEND THAT MUHFUGGIN PREFIX, YA DUMBASS!
 			############## APPEND APPEND APPEND APPEND APPEND APPEND APPEND APPEND
 			###########################################################################
 
@@ -1247,7 +1247,7 @@ END) AS "SSN        ",
 
 			####### okay, if the cell phone is just ddd-dddd, and the hp is perfect
 			####### then concat the prefix from the home phone onto the cell phone, which I just realized is stupid because how many people have a home phone that was issued
-			####### in the same city as the cell phone? very few, Dave, very few indeed. so nuts to this query too. accessible
+			####### in the same city as the cell phone? very few, Dave, very few indeed. so nuts to this query too. 
 
 			#WHEN c.ss_number IN (SELECT ss_number FROM aux_client)
 				#AND length(a.cell_phone) = 8
@@ -1260,12 +1260,12 @@ END) AS "SSN        ",
 
 	
 			############## ---> used when the SSN exists in aux_client and client, but the cell phone does NOT exist AND the home phone is less than 12
-			##########DELETED ##### # Christ, this is overloaded with bullshit
+			##########DELETED ##### # Christ, this is overloaded with nonsense
 
 			########## killed another WHEN statement 12/10/2019. Basically replaaced the CP with the HP. . AGAIN! Unnecessary! ####################
 
 			##### THIS KILLS A LOT OF WHAT CAME BEFORE: in the interest of time. Meh. I think it just makes more sense. #### DEADCPCODE ######
-			##### -----> fuuuuuck. Really, past Dave? REally!!!??——Dave 12/10/19
+			##### ----->Really, past Dave? REALLY!!!??——Dave 12/10/19
 			WHEN c.ss_number NOT IN (SELECT ss_number FROM aux_client)
 				AND c.home_phone REGEXP '[a-z]'
 				AND a.cell_phone IS NULL
